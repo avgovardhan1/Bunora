@@ -902,6 +902,44 @@ textarea{resize:vertical}
 }
 </style>
 
+
+<style id="bunora-final-mobile-touchup">
+/* Final small-screen polish: one hamburger glyph and a tighter hero title gap. */
+@media (max-width: 1100px) {
+  .premium-nav .burger {
+    font-size: 0 !important;
+    color: transparent !important;
+    line-height: 0 !important;
+    overflow: hidden !important;
+  }
+  .premium-nav .burger::before {
+    content: "☰" !important;
+    display: block !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 25px !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    color: #754225 !important;
+  }
+  :root[data-theme="dark"] .premium-nav .burger::before {
+    color: #f0c58a !important;
+  }
+  :root:not([data-theme="light"]):not([data-theme="dark"]) .premium-nav .burger::before {
+    color: #f0c58a !important;
+  }
+  .premium-nav .burger[aria-expanded="true"]::before {
+    content: "×" !important;
+    font-size: 30px !important;
+  }
+}
+@media (max-width: 600px) {
+  #hero .word {
+    top: clamp(120px, 14vh, 190px) !important;
+  }
+}
+</style>
+
 </head>
 <body>
 <nav class="premium-nav">
