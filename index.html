@@ -1701,5 +1701,81 @@ nav.premium-nav{
 }
 </style>
 
+
+<style id="bunora-final-theme-nav-footer-hero-v2">
+/* Unified theme tokens: explicit choices always win; System follows OS preference. */
+:root[data-theme="light"]{--bg:#fff8ed!important;--bg2:#f2e6d4!important;--ink:#432516!important;--brown:#713b22!important;--gold:#a96e2e!important;--gold2:#d8a75f!important;--muted:#735d4d!important;--card:#fffdf8!important;--line:rgba(105,65,38,.2)!important;--choc:#2a160d!important}
+:root[data-theme="dark"]{--bg:#17100c!important;--bg2:#21160f!important;--ink:#f5e8d8!important;--brown:#f0d0a4!important;--gold:#dfa85f!important;--gold2:#e8bd7d!important;--muted:#c7b29d!important;--card:#2a1d15!important;--line:rgba(226,177,111,.25)!important;--choc:#100a07!important}
+/* Header: clean, balanced alignment in both themes. */
+nav.premium-nav{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:clamp(12px,2vw,28px)!important;min-height:84px!important;padding:10px clamp(16px,4vw,64px)!important;z-index:100!important;}
+.premium-nav .logo{flex:0 0 auto!important;width:clamp(112px,13vw,154px)!important;height:76px!important;display:flex!important;align-items:center!important;}
+.premium-nav .bunora-nav-logo{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:left center!important}
+.premium-nav .links{display:flex;align-items:center;justify-content:center;gap:clamp(2px,.35vw,8px)!important;flex:1 1 auto!important;min-width:0!important}
+.premium-nav .links a{white-space:nowrap!important;font-size:clamp(.78rem,.9vw,.9rem)!important;padding:9px clamp(7px,.8vw,13px)!important;border-radius:999px!important}
+.premium-nav .acts{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:9px!important;flex:0 0 auto!important}
+.premium-nav .wa{display:none!important}
+.premium-nav .theme-toggle,.premium-nav .cart,.premium-nav .burger{min-height:46px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;border-radius:999px!important;font-family:'Jost',sans-serif!important;white-space:nowrap!important}
+.premium-nav .burger{width:48px!important;height:46px!important;padding:0!important;border-radius:14px!important}
+/* Light palette */
+:root[data-theme="light"] nav.premium-nav{background:rgba(255,250,241,.97)!important;border-bottom:1px solid rgba(105,65,38,.16)!important;box-shadow:0 5px 24px rgba(67,37,22,.07)!important;color:#432516!important}
+:root[data-theme="light"] .premium-nav .links a{color:#563722!important}
+:root[data-theme="light"] .premium-nav .links a:hover,:root[data-theme="light"] .premium-nav .links a.on{background:rgba(169,110,46,.09)!important;color:#8a4b25!important}
+:root[data-theme="light"] .premium-nav .theme-toggle,:root[data-theme="light"] .premium-nav .cart,:root[data-theme="light"] .premium-nav .burger{background:#fffdf8!important;color:#563722!important;border:1px solid rgba(105,65,38,.22)!important;box-shadow:0 3px 12px rgba(67,37,22,.06)!important}
+:root[data-theme="light"] .premium-nav .theme-toggle-icon{color:#a96e2e!important}
+:root[data-theme="light"] .premium-nav .burger{background:#f4e7d5!important;color:#60351e!important}
+/* Dark palette */
+:root[data-theme="dark"] nav.premium-nav{background:rgba(25,17,12,.98)!important;border-bottom:1px solid rgba(224,177,111,.22)!important;box-shadow:0 8px 28px rgba(0,0,0,.3)!important;color:#f5e8d8!important}
+:root[data-theme="dark"] .premium-nav .links a{color:#eadbc8!important}
+:root[data-theme="dark"] .premium-nav .links a:hover,:root[data-theme="dark"] .premium-nav .links a.on{background:rgba(224,177,111,.12)!important;color:#f2c982!important}
+:root[data-theme="dark"] .premium-nav .theme-toggle,:root[data-theme="dark"] .premium-nav .cart,:root[data-theme="dark"] .premium-nav .burger{background:linear-gradient(145deg,#302117,#24170f)!important;color:#f5e8d8!important;border:1px solid rgba(224,177,111,.32)!important;box-shadow:0 4px 14px rgba(0,0,0,.22)!important}
+:root[data-theme="dark"] .premium-nav .theme-toggle-icon{color:#e8b66d!important}
+:root[data-theme="dark"] .premium-nav .burger{background:#d6a15d!important;color:#24160e!important;border-color:#d6a15d!important}
+/* Mobile menu panels stay legible and use the selected theme. */
+@media(max-width:1100px){
+ .premium-nav .links{position:absolute!important;top:calc(100% + 8px)!important;left:4vw!important;right:4vw!important;max-width:none!important;display:none;grid-template-columns:1fr 1fr!important;gap:5px 12px!important;padding:18px!important;border-radius:18px!important;z-index:110!important}
+ .premium-nav .links.open{display:grid!important}
+ :root[data-theme="light"] .premium-nav .links{background:rgba(255,250,241,.99)!important;border:1px solid rgba(105,65,38,.2)!important;box-shadow:0 18px 42px rgba(67,37,22,.16)!important}
+ :root[data-theme="light"] .premium-nav .links a{color:#563722!important}
+ :root[data-theme="dark"] .premium-nav .links{background:linear-gradient(145deg,#2b1d15,#1d130e)!important;border:1px solid rgba(224,177,111,.3)!important;box-shadow:0 18px 44px rgba(0,0,0,.48)!important}
+ :root[data-theme="dark"] .premium-nav .links a{color:#f1e3d2!important}
+}
+/* Footer: readable contrast, no washed-out copy or watermark competing with content. */
+:root[data-theme="light"] .bunora-footer{background:linear-gradient(145deg,#fff8ed 0%,#f0e3d0 100%)!important;color:#735d4d!important;border-top:1px solid rgba(105,65,38,.18)!important}
+:root[data-theme="light"] .bunora-footer .footer-wordmark,:root[data-theme="light"] .bunora-footer .footer-tagline,:root[data-theme="light"] .bunora-footer .footer-column h4{color:#713b22!important}
+:root[data-theme="light"] .bunora-footer .footer-description,:root[data-theme="light"] .bunora-footer .footer-hours,:root[data-theme="light"] .bunora-footer .footer-note,:root[data-theme="light"] .bunora-footer .footer-bottom{color:#735d4d!important;opacity:1!important}
+:root[data-theme="light"] .bunora-footer .footer-column a,:root[data-theme="light"] .bunora-footer .footer-contact a,:root[data-theme="light"] .bunora-footer .footer-legal a{color:#503522!important;opacity:1!important}
+:root[data-theme="light"] .bunora-footer .footer-cta,:root[data-theme="light"] .bunora-footer .footer-outline{background:#fffaf2!important;color:#713b22!important;border:1px solid rgba(105,65,38,.24)!important}
+:root[data-theme="light"] .bunora-footer .footer-watermark{color:rgba(128,82,42,.07)!important}
+:root[data-theme="dark"] .bunora-footer{background:radial-gradient(ellipse at 15% 0%,rgba(161,103,52,.15),transparent 42%),linear-gradient(145deg,#24180f 0%,#17100c 100%)!important;color:#cbb8a3!important;border-top:1px solid rgba(224,177,111,.24)!important}
+:root[data-theme="dark"] .bunora-footer .footer-wordmark{color:#f3d6ae!important}
+:root[data-theme="dark"] .bunora-footer .footer-wordmark span{color:#dfa85f!important}
+:root[data-theme="dark"] .bunora-footer .footer-tagline,:root[data-theme="dark"] .bunora-footer .footer-column h4{color:#e8c18b!important}
+:root[data-theme="dark"] .bunora-footer .footer-description,:root[data-theme="dark"] .bunora-footer .footer-hours,:root[data-theme="dark"] .bunora-footer .footer-note,:root[data-theme="dark"] .bunora-footer .footer-bottom{color:#cbb8a3!important;opacity:1!important}
+:root[data-theme="dark"] .bunora-footer .footer-column a,:root[data-theme="dark"] .bunora-footer .footer-contact a,:root[data-theme="dark"] .bunora-footer .footer-legal a{color:#f0e2d1!important;opacity:1!important}
+:root[data-theme="dark"] .bunora-footer .footer-cta,:root[data-theme="dark"] .bunora-footer .footer-outline{background:#35251a!important;color:#f3d6ae!important;border:1px solid rgba(224,177,111,.34)!important}
+:root[data-theme="dark"] .bunora-footer .footer-watermark{color:rgba(224,177,111,.06)!important}
+.bunora-footer .footer-watermark{pointer-events:none!important;z-index:0!important}
+.bunora-footer .footer-top,.bunora-footer .footer-note,.bunora-footer .footer-bottom{position:relative!important;z-index:2!important}
+/* System mode follows OS preference when user has not chosen Light or Dark. */
+@media(prefers-color-scheme:dark){
+ :root:not([data-theme="light"]):not([data-theme="dark"]) nav.premium-nav{background:rgba(25,17,12,.98)!important;border-bottom:1px solid rgba(224,177,111,.22)!important;color:#f5e8d8!important}
+ :root:not([data-theme="light"]):not([data-theme="dark"]) .premium-nav .links a{color:#eadbc8!important}
+ :root:not([data-theme="light"]):not([data-theme="dark"]) .premium-nav .theme-toggle,:root:not([data-theme="light"]):not([data-theme="dark"]) .premium-nav .cart,:root:not([data-theme="light"]):not([data-theme="dark"]) .premium-nav .burger{background:#302117!important;color:#f5e8d8!important;border:1px solid rgba(224,177,111,.32)!important}
+ :root:not([data-theme="light"]):not([data-theme="dark"]) .bunora-footer{background:linear-gradient(145deg,#24180f,#17100c)!important;color:#cbb8a3!important}
+ :root:not([data-theme="light"]):not([data-theme="dark"]) .bunora-footer .footer-wordmark,:root:not([data-theme="light"]):not([data-theme="dark"]) .bunora-footer .footer-column h4{color:#e8c18b!important}
+ :root:not([data-theme="light"]):not([data-theme="dark"]) .bunora-footer .footer-description,:root:not([data-theme="light"]):not([data-theme="dark"]) .bunora-footer .footer-hours,:root:not([data-theme="light"]):not([data-theme="dark"]) .bunora-footer .footer-bottom{color:#cbb8a3!important}
+ :root:not([data-theme="light"]):not([data-theme="dark"]) .bunora-footer .footer-column a,:root:not([data-theme="light"]):not([data-theme="dark"]) .bunora-footer .footer-contact a{color:#f0e2d1!important}
+}
+/* Desktop hero: lift the wordmark to create a clear gap above the bun artwork. */
+@media(min-width:901px){
+ #hero .word{top:clamp(78px,9vh,112px)!important;line-height:1.02!important;transform:translateY(-4px)!important;font-size:clamp(5.2rem,8.8vw,9.2rem)!important;z-index:4!important}
+ #hero #gl{z-index:2!important}
+}
+@media(min-width:901px) and (max-height:760px){#hero .word{top:68px!important;font-size:clamp(4.8rem,7.5vw,7rem)!important}}
+@media(max-width:900px){#hero .word{top:clamp(112px,16vh,150px)!important;transform:none!important}}
+@media(max-width:600px){nav.premium-nav{min-height:76px!important;padding:8px 4vw!important}.premium-nav .logo{width:clamp(104px,25vw,132px)!important;height:68px!important}.premium-nav .acts{gap:7px!important}.premium-nav .theme-toggle,.premium-nav .cart,.premium-nav .burger{min-height:44px!important}.premium-nav .cart{padding:8px 12px!important;font-size:.8rem!important}.premium-nav .burger{width:44px!important;height:44px!important}}
+@media(prefers-reduced-motion:reduce){nav.premium-nav *,.bunora-footer *{transition:none!important}}
+</style>
+
 </body>
 </html>
