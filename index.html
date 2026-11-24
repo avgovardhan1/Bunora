@@ -584,6 +584,105 @@ nav.premium-nav{min-height:84px;padding:14px clamp(18px,5vw,76px);background:rgb
 @media(prefers-reduced-motion:reduce){#hero .word span{animation:none!important;opacity:1!important;transform:none!important;}}
 </style>
 
+
+<style id="bunora-mobile-final-polish">
+/* Mobile-first layout refinements: compact header, balanced hero and readable controls. */
+@media (max-width: 720px) {
+  html, body { width:100%; max-width:100%; overflow-x:hidden; }
+  .premium-nav {
+    min-height:86px !important;
+    height:auto !important;
+    padding:8px 14px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:8px !important;
+  }
+  .premium-nav .logo { width:104px !important; height:72px !important; flex:0 0 104px !important; }
+  .premium-nav .acts { display:flex !important; align-items:center !important; gap:7px !important; flex:0 0 auto !important; }
+  .premium-nav .wa {
+    width:44px !important; height:44px !important; min-width:44px !important;
+    padding:0 !important; display:inline-flex !important; align-items:center !important;
+    justify-content:center !important; border-radius:50% !important;
+    background:#1fa855 !important; color:#fff !important;
+  }
+  .premium-nav .wa svg { width:19px !important; height:19px !important; }
+  .premium-nav .cart { padding:10px 12px !important; min-height:42px !important; font-size:.82rem !important; white-space:nowrap !important; }
+  .premium-nav .burger { display:inline-flex !important; width:44px !important; height:44px !important; flex:0 0 44px !important; align-items:center !important; justify-content:center !important; font-size:1.25rem !important; }
+  .premium-nav .links { top:100% !important; z-index:1002 !important; max-height:75svh !important; overflow-y:auto !important; }
+
+  #hero {
+    height: min(790px, calc(100svh - 86px)) !important;
+    min-height:680px !important;
+    max-height:790px !important;
+    background-color:#fbf2e5 !important;
+    background-image:radial-gradient(75% 52% at 50% 47%, rgba(224,177,99,.24), transparent 75%) !important;
+    overflow:hidden !important;
+  }
+  #hero .word {
+    top:38px !important;
+    font-size:clamp(3.4rem,13vw,5.5rem) !important;
+    line-height:1 !important;
+    letter-spacing:0 !important;
+    color:#713313 !important;
+    white-space:nowrap !important;
+    z-index:4 !important;
+  }
+  #hero #gl { z-index:2 !important; }
+  #hero .low {
+    bottom:22px !important;
+    left:0 !important; right:0 !important;
+    padding:0 16px !important;
+    gap:4px !important;
+  }
+  #hero .tag {
+    width:100% !important; max-width:520px !important;
+    box-sizing:border-box !important;
+    justify-content:center !important;
+    padding:10px 12px !important;
+    background:rgba(255,248,237,.96) !important;
+    color:#713313 !important;
+    border:1px solid rgba(170,112,43,.28) !important;
+    box-shadow:0 5px 18px rgba(76,39,17,.08) !important;
+    font-size:clamp(1.05rem,4.4vw,1.35rem) !important;
+    line-height:1.2 !important;
+    letter-spacing:.035em !important;
+    text-align:center !important;
+  }
+  #hero .tag::before, #hero .tag::after { width:clamp(18px,7vw,42px) !important; flex:0 0 auto !important; }
+  #hero .btns {
+    display:flex !important; flex-direction:row !important; flex-wrap:wrap !important;
+    align-items:center !important; justify-content:center !important; gap:10px !important;
+    width:100% !important;
+  }
+  #hero .btns .cta, #hero .btns .cta2 {
+    display:inline-flex !important; align-items:center !important; justify-content:center !important;
+    box-sizing:border-box !important; min-height:48px !important;
+    margin:8px 0 0 !important; padding:12px 19px !important;
+    font-size:.96rem !important; line-height:1.15 !important;
+    white-space:nowrap !important;
+  }
+  .band { padding:12px 0 !important; font-size:1.2rem !important; }
+  section { padding:64px 20px !important; }
+  .wrap { width:100% !important; }
+  .menu { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:14px !important; }
+  .fg { grid-template-columns:1fr !important; gap:24px !important; }
+  img, video, canvas { max-width:100%; }
+}
+@media (max-width:390px) {
+  .premium-nav { padding-inline:10px !important; }
+  .premium-nav .logo { width:90px !important; flex-basis:90px !important; }
+  .premium-nav .cart { padding:9px 9px !important; font-size:.76rem !important; }
+  #hero .word { font-size:clamp(3rem,12.5vw,3.8rem) !important; }
+  #hero .btns { flex-direction:column !important; gap:2px !important; }
+  #hero .btns .cta, #hero .btns .cta2 { width:min(100%,280px) !important; }
+  .menu { grid-template-columns:1fr !important; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .band div { animation:none !important; }
+}
+</style>
+
 </head>
 <body>
 <nav class="premium-nav">
@@ -1000,7 +1099,7 @@ addEventListener('hashchange',route);route();
  function size(){if(!hero.clientWidth)return;var w=hero.clientWidth,h=hero.clientHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();
   var vh=2*Math.tan(cam.fov*Math.PI/360)*cam.position.z,vw=vh*cam.aspect;
   base=Math.min(vw*(w<720?.98:.6)/W,vh*.44/H);group.scale.setScalar(base);
-  group.position.y=h*0+(w<720?-.3:-.45);sh.scale.setScalar(base);sh.position.y=-H*base*.5+group.position.y-.25;
+  group.position.y=h*0+(w<720?.12:-.45);sh.scale.setScalar(base);sh.position.y=-H*base*.5+group.position.y-.25;
   ring.scale.setScalar(Math.min(1,vw/9));}
  addEventListener('resize',size);size();window.heroResize=size;window.heroResize=size;
  var mx=0,my=0,tx=0,ty=0,sy=0;
@@ -1013,7 +1112,7 @@ addEventListener('hashchange',route);route();
   tx+=(mx*.55-tx)*.06;ty+=(my*.35-ty)*.06;
   var e=born?Math.min((performance.now()-born)/1600,1):0;e=1-Math.pow(1-e,4);
   group.rotation.y=tx+Math.sin(t*.6)*.06+sy*.5;group.rotation.x=ty+Math.cos(t*.5)*.03;
-  group.position.y=(hero.clientWidth<720?-.3:-.45)+Math.sin(t*1.1)*.1+(1-e)*-1.6+sy*.8;
+  group.position.y=(hero.clientWidth<720?.12:-.45)+Math.sin(t*1.1)*.1+(1-e)*-1.6+sy*.8;
   group.scale.setScalar(base*(.85+.15*e));
   layers.forEach(function(l){l.material.opacity=e});
   sh.material.opacity=e*(.8-Math.sin(t*1.1)*.12);
