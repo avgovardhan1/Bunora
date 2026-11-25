@@ -29,6 +29,7 @@
   "sameAs": []
 }
 </script>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500&display=optional" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500&display=optional"></noscript>
 <style>
 :root{--bg:#fbf3e6;--bg2:#f3e4cc;--ink:#3d1805;--brown:#6b2d0e;--gold:#b98324;--gold2:#e8b95a;--muted:#86624a;--card:#fffaf0;--line:rgba(107,45,14,.2);--choc:#2a1006;
@@ -948,6 +949,9 @@ textarea{resize:vertical}
 
 <style id="bunora-performance-pass">
 /* Performance pass: preserve the visual design while limiting costly effects. */
+#hero{contain:layout paint;isolation:isolate;min-height:clamp(560px,82svh,860px)}
+#hero #gl{position:absolute;inset:0;width:100%;height:100%;contain:strict}
+img{height:auto}
 #hero{contain:layout paint;isolation:isolate}
 #gl{display:block;max-width:100%;pointer-events:none}
 @media (max-width: 900px){#bunoraProductDialog{backdrop-filter:none!important}.item,.upgrade-tile,.review-entry{transition:transform .18s ease!important;box-shadow:0 8px 22px rgba(35,18,9,.06)!important}}
@@ -1143,7 +1147,7 @@ var gallery=document.querySelector('#gallery .wrap');
 if(gallery){
  var galleryGrid=document.createElement('div');galleryGrid.className='gallery-grid bunora-photo-grid';
  var galleryItems=[['choc','Molten chocolate bun'],['pist','Pistachio cream bun'],['brioche','Fresh brioche'],['brownie','Chocolate brownie']];
- galleryGrid.innerHTML=galleryItems.map(function(item){var src=PIC[item[0]]||PIC.all;return '<figure class="gallery-photo"><img width="360" height="203" src="'+src+'" alt="'+item[1]+'" loading="lazy" decoding="async"><figcaption>'+item[1]+'</figcaption></figure>'}).join('');
+ galleryGrid.innerHTML=galleryItems.map(function(item){var src=PIC[item[0]]||PIC.all;return '<figure class="gallery-photo"><img width="360" height="203" src="'+src+'" alt="'+item[1]+'" loading="lazy" decoding="async" width="360" height="203"><figcaption>'+item[1]+'</figcaption></figure>'}).join('');
  var intro=gallery.querySelector('.lead');if(intro)intro.insertAdjacentElement('afterend',galleryGrid);
 }
 // Product search: search the active category or the complete catalogue.
@@ -1288,7 +1292,7 @@ addEventListener('hashchange',route);route();
  function startHero(){
  if(!window.THREE)return;
  var cv=document.getElementById('gl'),hero=document.getElementById('hero');
- var r=new THREE.WebGLRenderer({canvas:cv,antialias:false,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio,innerWidth<720?0.65:0.9));
+ var r=new THREE.WebGLRenderer({canvas:cv,antialias:false,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio,innerWidth<720?0.55:0.78));
  var sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(30,1,.1,100);cam.position.z=12;
  var still=matchMedia('(prefers-reduced-motion:reduce)').matches;
  var group=new THREE.Group();sc.add(group);
@@ -1326,7 +1330,7 @@ addEventListener('hashchange',route);route();
  if(matchMedia('(pointer:fine)').matches)addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
  addEventListener('scroll',function(){sy=Math.min(scrollY/innerHeight,1.2)},{passive:true});
  var t0=performance.now();
- var active=false,raf=0,lastFrame=0,interval=innerWidth<720?1000/15:1000/24;
+ var active=false,raf=0,lastFrame=0,frameCount=0,interval=innerWidth<720?1000/15:1000/24;
  function frame(now){
   raf=0;if(!active||document.hidden)return;
   if(now-lastFrame<interval){raf=requestAnimationFrame(frame);return;}lastFrame=now;
@@ -1337,10 +1341,10 @@ addEventListener('hashchange',route);route();
   group.rotation.y=tx+Math.sin(t*.6)*.06+sy*.5;group.rotation.x=ty+Math.cos(t*.5)*.03;
   group.position.y=(hero.clientWidth<720?.12:-.45)+Math.sin(t*1.1)*.1+(1-e)*-1.6+sy*.8;
   group.scale.setScalar(base*(.85+.15*e));
-  layers.forEach(function(l){l.material.opacity=e});
+  for(var li=0;li<layers.length;li++)layers[li].material.opacity=e;
   sh.material.opacity=e*(.8-Math.sin(t*1.1)*.12);
   ring.rotation.x=.25+ty*.6;ring.rotation.y=tx*.6;ring.position.y=-.45+Math.sin(t*1.1)*.1;
-  var p=pg.attributes.position;for(var i=0;i<M;i++){var y=p.array[i*3+1]-.003*sp[i];if(y<-5)y=5;p.array[i*3+1]=y}p.needsUpdate=true;
+  if((frameCount++%2)===0){var p=pg.attributes.position;for(var i=0;i<M;i++){var y=p.array[i*3+1]-.003*sp[i];if(y<-5)y=5;p.array[i*3+1]=y}p.needsUpdate=true;}
   dust.rotation.y=t*.02+tx*.3;r.render(sc,cam);if(!still)raf=requestAnimationFrame(frame);
  }
  function wake(){if(active&&!document.hidden&&!raf)raf=requestAnimationFrame(frame)}
@@ -1349,8 +1353,12 @@ addEventListener('hashchange',route);route();
  addEventListener('resize',function(){interval=innerWidth<720?1000/15:1000/24;size()},{passive:true});
  }
  function loadThree(){var script=document.createElement('script');script.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';script.async=true;script.onload=startHero;document.head.appendChild(script)}
- function scheduleThree(){if('requestIdleCallback'in window)requestIdleCallback(loadThree,{timeout:1800});else setTimeout(loadThree,900)}
- if(document.readyState==='complete')scheduleThree();else window.addEventListener('load',scheduleThree,{once:true});
+ function scheduleThree(){
+  if('requestIdleCallback'in window)requestIdleCallback(loadThree,{timeout:650});
+  else setTimeout(loadThree,180);
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',scheduleThree,{once:true});
+ else scheduleThree();
 })();
 </script>
 <script>
